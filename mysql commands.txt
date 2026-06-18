@@ -1,0 +1,720 @@
+icrosoft Windows [Version 10.0.26200.8655]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\PINKY>services.msc
+
+C:\Users\PINKY>sqlplus / as sysdba
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Thu Jun 18 10:18:52 2026
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> use database db
+SP2-0734: unknown command beginning "use databa..." - rest of line ignored.
+SQL> sqlplus system
+SP2-0734: unknown command beginning "sqlplus sy..." - rest of line ignored.
+SQL> create table students(roll int,name String(10));
+create table students(roll int,name String(10))
+                                          *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table students(roll int,name varchar(10));
+
+Table created.
+
+SQL> create table transaction(tid int,tamt int,cid int);
+
+Table created.
+
+SQL> drop table transaction;
+
+Table dropped.
+
+SQL> create database joins;
+create database joins
+*
+ERROR at line 1:
+ORA-01501: CREATE DATABASE failed
+ORA-01100: database already mounted
+
+
+SQL> create database join;
+create database join
+*
+ERROR at line 1:
+ORA-01501: CREATE DATABASE failed
+ORA-01100: database already mounted
+
+
+SQL> create table transaction(tid int primary key auto_increment,name varchar(10),amt int,cid int);
+create table transaction(tid int primary key auto_increment,name varchar(10),amt int,cid int)
+                                             *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> desc students;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL                                               NUMBER(38)
+ NAME                                               VARCHAR2(10)
+
+SQL> alter table add column phn varchar(10);
+alter table add column phn varchar(10)
+            *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> alter table students add column phn varchar(10);
+alter table students add column phn varchar(10)
+                         *
+ERROR at line 1:
+ORA-00904: : invalid identifier
+
+
+SQL> alter table students add phn varchar(10);
+
+Table altered.
+
+SQL> desc students;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL                                               NUMBER(38)
+ NAME                                               VARCHAR2(10)
+ PHN                                                VARCHAR2(10)
+
+SQL> insert into students(1,"sharmila","7989720146"),
+  2  (2,"pandu","9014188736"),
+  3  (3,"sandeep","8247397541");
+insert into students(1,"sharmila","7989720146"),
+                     *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> insert into students values(1,"sharmila","7989720146"),(2,"pandu","9014188736"),(3,"sandeep","8247397541");
+insert into students values(1,"sharmila","7989720146"),(2,"pandu","9014188736"),(3,"sandeep","8247397541")
+                                                      *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> insert into students values(1,"sharmila","7989720146"),
+  2  ;
+insert into students values(1,"sharmila","7989720146"),
+                                                      *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> insert into students values(1,"sharmila","7989720146");
+insert into students values(1,"sharmila","7989720146")
+                                         *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> INSERT INTO students VALUES(1,'sharmila','7989720146');
+
+1 row created.
+
+SQL> INSERT INTO students VALUES(2,'pandu','9014188736');
+
+1 row created.
+
+SQL> INSERT INTO students VALUES(3,'sandeep','8247397541');
+
+1 row created.
+
+SQL> select*from students;
+
+      ROLL NAME       PHN
+---------- ---------- ----------
+         1 sharmila   7989720146
+         2 pandu      9014188736
+         3 sandeep    8247397541
+
+SQL> insert into students (roll,name) values(4,"usha");
+insert into students (roll,name) values(4,"usha")
+                                          *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> insert into students (roll,name) values(4,'usha');
+
+1 row created.
+
+SQL> insert into students (roll,name) values(5,'sruthi');
+
+1 row created.
+
+SQL> select*from students;
+
+      ROLL NAME       PHN
+---------- ---------- ----------
+         1 sharmila   7989720146
+         2 pandu      9014188736
+         3 sandeep    8247397541
+         4 usha
+         5 sruthi
+
+SQL> create table std(roll int,name varchar(10),phn varchar(10));
+
+Table created.
+
+SQL> insert into std values(11,"trisha","123");
+insert into std values(11,"trisha","123")
+                                   *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> insert into std values(11,'trisha','123');
+
+1 row created.
+
+SQL> insert into std values(12,'sujith','456');
+
+1 row created.
+
+SQL> insert into students select * from std;
+
+2 rows created.
+
+SQL> select*from students;
+
+      ROLL NAME       PHN
+---------- ---------- ----------
+         1 sharmila   7989720146
+         2 pandu      9014188736
+         3 sandeep    8247397541
+         4 usha
+         5 sruthi
+        11 trisha     123
+        12 sujith     456
+
+7 rows selected.
+
+SQL> update students set phn='123456' where roll=4;
+
+1 row updated.
+
+SQL> delete from std;
+
+2 rows deleted.
+
+SQL> Begin
+  2  roll back;
+  3
+  4  ;
+  5    6    7  ^C
+C:\Users\PINKY>
+
+C:\Users\PINKY>roll back;
+'roll' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\PINKY>roll_back;
+'roll_back' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\PINKY>rollback;
+'rollback' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\PINKY>ROLLBACK
+'ROLLBACK' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\PINKY>ROLLBACK;
+'ROLLBACK' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\PINKY>sqlplus
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Thu Jun 18 12:04:12 2026
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+Enter user-name: Enter password:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+Enter user-name:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+Enter user-name:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+SP2-0157: unable to CONNECT to ORACLE after 3 attempts, exiting SQL*Plus
+
+C:\Users\PINKY>sqlplus / as sysdba
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Thu Jun 18 12:04:48 2026
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select*from std;
+
+no rows selected
+
+SQL> insert into std values(11,"trisha","123");
+insert into std values(11,"trisha","123")
+                                   *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> insert into std values(11,'trisha','123');
+
+1 row created.
+
+SQL> insert into std values(12,'sujith','456');
+
+1 row created.
+
+SQL> select*from std;
+
+      ROLL NAME       PHN
+---------- ---------- ----------
+        11 trisha     123
+        12 sujith     456
+
+SQL> delete from std;
+
+2 rows deleted.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select*from std;
+
+no rows selected
+
+SQL> SP2-0042: unknown command "s" - rest of line ignored.
+SQL> SHOW AUTOCOMMIT;
+autocommit OFF
+SQL> select*from std;
+
+no rows selected
+
+SQL> create table sales(id int,product varchar(10),sales double);
+create table sales(id int,product varchar(10),sales double)
+                                                          *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> create table sales(id int,product varchar(10),sales int);
+
+Table created.
+
+SQL> insert into sales values(1,'laptop',100000);
+
+1 row created.
+
+SQL> insert into sales values(2,'mobile',20000);
+
+1 row created.
+
+SQL> insert into sales values(3,'earpodes',1000);
+
+1 row created.
+
+SQL> insert into sales values(4,'phonecase',100);
+
+1 row created.
+
+SQL> insert into sales values(5,'mouse',300);
+
+1 row created.
+
+SQL> select sales,sum(sales) as totalsales from sales;
+select sales,sum(sales) as totalsales from sales
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> drop column sales;
+drop column sales
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option
+
+
+SQL> drop column sales from sales;
+drop column sales from sales
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option
+
+
+SQL> alter table sales drop column sales;
+alter table sales drop column sales
+*
+ERROR at line 1:
+ORA-12988: cannot drop column from table owned by SYS
+
+
+SQL> select sales,sum(sales) as totalsales from sales;
+select sales,sum(sales) as totalsales from sales
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> drop table sales;
+
+Table dropped.
+
+SQL> create table sales(id int,product varchar(10),sales_A double);
+create table sales(id int,product varchar(10),sales_A double)
+                                                            *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> create table sales(id int,product varchar(10),sales_A int);
+
+Table created.
+
+SQL> insert into sales values(1,'laptop',100000);
+
+1 row created.
+
+SQL> insert into sales values(2,'mobile',20000);
+
+1 row created.
+
+SQL> insert into sales values(3,'earpodes',1000);
+
+1 row created.
+
+SQL> insert into sales values(4,'phonecase',100);
+
+1 row created.
+
+SQL> insert into sales values(5,'mouse',300);
+
+1 row created.
+
+SQL> select sales,sum(sales_A) as totalsales from sales;
+select sales,sum(sales_A) as totalsales from sales
+       *
+ERROR at line 1:
+ORA-00904: "SALES": invalid identifier
+
+
+SQL> select avg(sales_A) from sales;
+
+AVG(SALES_A)
+------------
+       24280
+
+SQL> select sum(sales_A) as totalsales from sales;
+
+TOTALSALES
+----------
+    121400
+
+SQL> select max(sales_A) from sales;
+
+MAX(SALES_A)
+------------
+      100000
+
+SQL> select min(sales_A) from sales;
+
+MIN(SALES_A)
+------------
+         100
+
+SQL> select count(*) from sales;
+
+  COUNT(*)
+----------
+         5
+
+SQL> CREATE TABLE transaction_details (
+  2      tid NUMBER PRIMARY KEY,
+  3      name VARCHAR2(20),
+  4      customer_id NUMBER,
+  5      amount NUMBER
+  6  );
+
+Table created.
+
+SQL> INSERT INTO transaction_details VALUES (101, 'Sharmila', 1001, 5000);
+
+1 row created.
+
+SQL> INSERT INTO transaction_details VALUES (102, 'Pandu', 1002, 3500);
+
+1 row created.
+
+SQL> INSERT INTO transaction_details VALUES (103, 'Sandeep', 1003, 4200);
+
+1 row created.
+
+SQL> INSERT INTO transaction_details VALUES (104, 'Swathika', 1004, 2800);
+
+1 row created.
+
+SQL> INSERT INTO transaction_details VALUES (105, 'Vasundara', 1005, 6100);
+
+1 row created.
+
+SQL>
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> CREATE TABLE customer_details (
+  2      cid NUMBER PRIMARY KEY,
+  3      name VARCHAR2(20),
+  4      amount NUMBER
+  5  );
+
+Table created.
+
+SQL> INSERT INTO customer_details VALUES (1001, 'Sharmila', 5000);
+
+1 row created.
+
+SQL> INSERT INTO customer_details VALUES (1002, 'Pandu', 3500);
+
+1 row created.
+
+SQL> INSERT INTO customer_details VALUES (1003, 'Sandeep', 4200);
+
+1 row created.
+
+SQL> INSERT INTO customer_details VALUES (1004, 'Swathika', 2800);
+
+1 row created.
+
+SQL> INSERT INTO customer_details VALUES (1006, 'Vasundara', 6100);
+
+1 row created.
+
+SQL>
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT t.tid, t.name, t.customer_id, c.name, c.amount
+  2  FROM transaction_details t
+  3  INNER JOIN customer_details c
+  4  ON t.customer_id = c.cid;
+
+       TID NAME                 CUSTOMER_ID NAME                     AMOUNT
+---------- -------------------- ----------- -------------------- ----------
+       101 Sharmila                    1001 Sharmila                   5000
+       102 Pandu                       1002 Pandu                      3500
+       103 Sandeep                     1003 Sandeep                    4200
+       104 Swathika                    1004 Swathika                   2800
+
+SQL> SELECT t.tid, t.name, t.customer_id, c.name, c.amount
+  2  FROM transaction_details t
+  3  LEFT OUTER JOIN customer_details c
+  4  ON t.customer_id = c.cid;
+
+       TID NAME                 CUSTOMER_ID NAME                     AMOUNT
+---------- -------------------- ----------- -------------------- ----------
+       101 Sharmila                    1001 Sharmila                   5000
+       102 Pandu                       1002 Pandu                      3500
+       103 Sandeep                     1003 Sandeep                    4200
+       104 Swathika                    1004 Swathika                   2800
+       105 Vasundara                   1005
+
+SQL> SELECT t.tid, t.name, t.customer_id, c.name, c.amount
+  2  FROM transaction_details t
+  3  FULL OUTER JOIN customer_details c
+  4  ON t.customer_id = c.cid;
+
+       TID NAME                 CUSTOMER_ID NAME                     AMOUNT
+---------- -------------------- ----------- -------------------- ----------
+       101 Sharmila                    1001 Sharmila                   5000
+       102 Pandu                       1002 Pandu                      3500
+       103 Sandeep                     1003 Sandeep                    4200
+       104 Swathika                    1004 Swathika                   2800
+                                            Vasundara                  6100
+       105 Vasundara                   1005
+
+6 rows selected.
+
+SQL> SELECT *
+  2  FROM transaction_details
+  3  CROSS JOIN customer_details;
+
+       TID NAME                 CUSTOMER_ID     AMOUNT        CID
+---------- -------------------- ----------- ---------- ----------
+NAME                     AMOUNT
+-------------------- ----------
+       101 Sharmila                    1001       5000       1001
+Sharmila                   5000
+
+       101 Sharmila                    1001       5000       1002
+Pandu                      3500
+
+       101 Sharmila                    1001       5000       1003
+Sandeep                    4200
+
+
+       TID NAME                 CUSTOMER_ID     AMOUNT        CID
+---------- -------------------- ----------- ---------- ----------
+NAME                     AMOUNT
+-------------------- ----------
+       101 Sharmila                    1001       5000       1004
+Swathika                   2800
+
+       101 Sharmila                    1001       5000       1006
+Vasundara                  6100
+
+       102 Pandu                       1002       3500       1001
+Sharmila                   5000
+
+
+       TID NAME                 CUSTOMER_ID     AMOUNT        CID
+---------- -------------------- ----------- ---------- ----------
+NAME                     AMOUNT
+-------------------- ----------
+       102 Pandu                       1002       3500       1002
+Pandu                      3500
+
+       102 Pandu                       1002       3500       1003
+Sandeep                    4200
+
+       102 Pandu                       1002       3500       1004
+Swathika                   2800
+
+
+       TID NAME                 CUSTOMER_ID     AMOUNT        CID
+---------- -------------------- ----------- ---------- ----------
+NAME                     AMOUNT
+-------------------- ----------
+       102 Pandu                       1002       3500       1006
+Vasundara                  6100
+
+       103 Sandeep                     1003       4200       1001
+Sharmila                   5000
+
+       103 Sandeep                     1003       4200       1002
+Pandu                      3500
+
+
+       TID NAME                 CUSTOMER_ID     AMOUNT        CID
+---------- -------------------- ----------- ---------- ----------
+NAME                     AMOUNT
+-------------------- ----------
+       103 Sandeep                     1003       4200       1003
+Sandeep                    4200
+
+       103 Sandeep                     1003       4200       1004
+Swathika                   2800
+
+       103 Sandeep                     1003       4200       1006
+Vasundara                  6100
+
+
+       TID NAME                 CUSTOMER_ID     AMOUNT        CID
+---------- -------------------- ----------- ---------- ----------
+NAME                     AMOUNT
+-------------------- ----------
+       104 Swathika                    1004       2800       1001
+Sharmila                   5000
+
+       104 Swathika                    1004       2800       1002
+Pandu                      3500
+
+       104 Swathika                    1004       2800       1003
+Sandeep                    4200
+
+
+       TID NAME                 CUSTOMER_ID     AMOUNT        CID
+---------- -------------------- ----------- ---------- ----------
+NAME                     AMOUNT
+-------------------- ----------
+       104 Swathika                    1004       2800       1004
+Swathika                   2800
+
+       104 Swathika                    1004       2800       1006
+Vasundara                  6100
+
+       105 Vasundara                   1005       6100       1001
+Sharmila                   5000
+
+
+       TID NAME                 CUSTOMER_ID     AMOUNT        CID
+---------- -------------------- ----------- ---------- ----------
+NAME                     AMOUNT
+-------------------- ----------
+       105 Vasundara                   1005       6100       1002
+Pandu                      3500
+
+       105 Vasundara                   1005       6100       1003
+Sandeep                    4200
+
+       105 Vasundara                   1005       6100       1004
+Swathika                   2800
+
+
+       TID NAME                 CUSTOMER_ID     AMOUNT        CID
+---------- -------------------- ----------- ---------- ----------
+NAME                     AMOUNT
+-------------------- ----------
+       105 Vasundara                   1005       6100       1006
+Vasundara                  6100
+
+
+25 rows selected.
+
+SQL> SELECT * FROM transaction_details;
+
+       TID NAME                 CUSTOMER_ID     AMOUNT
+---------- -------------------- ----------- ----------
+       101 Sharmila                    1001       5000
+       102 Pandu                       1002       3500
+       103 Sandeep                     1003       4200
+       104 Swathika                    1004       2800
+       105 Vasundara                   1005       6100
+
+SQL> SELECT * FROM customer_details;
+
+       CID NAME                     AMOUNT
+---------- -------------------- ----------
+      1001 Sharmila                   5000
+      1002 Pandu                      3500
+      1003 Sandeep                    4200
+      1004 Swathika                   2800
+      1006 Vasundara                  6100
+
+SQL>
